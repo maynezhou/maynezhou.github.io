@@ -2637,9 +2637,9 @@ color
 .article-entry li code {
   padding: 1px 3px;
   margin: 0 3px;
-  color: #999;
-  background: #002b36;
-  border: 1px dashed #ccc;
+  color: #fff;
+  background: rgba(153,204,153,0.7);
+  border: 1px dashed #7ea299;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
@@ -2734,8 +2734,8 @@ color
   background: none;
 }
 .article-entry code {
-  color: #999;
-  background: #002b36;
+  color: #fff;
+  background: rgba(153,204,153,0.7);
   padding: 1px 3px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -3219,7 +3219,7 @@ color
 }
 .article-entry pre,
 .article-entry .highlight {
-  background: #202225;
+  background: #333;
   margin: 10px 0;
   padding: 10px 10px;
   overflow: auto;
@@ -3228,7 +3228,7 @@ color
 }
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
-  color: #8abeb7;
+  color: #6cc;
 }
 .article-entry pre,
 .article-entry code {
@@ -3250,23 +3250,23 @@ color
   box-sizing: border-box;
 }
 .article-entry code {
-  background: #002b36;
+  background: rgba(153,204,153,0.7);
   padding: 0 0.3em;
   border: none;
 }
 .article-entry pre {
-  color: #c5c8c6;
+  color: #ccc;
 }
 .article-entry pre code {
   background: none;
   text-shadow: none;
   padding: 0;
-  color: #c5c8c6;
+  color: #ccc;
 }
 .article-entry p code {
   margin: 0 3px;
   border: dashed 1px #000;
-  color: #999;
+  color: #fff;
   padding: 1px 8px;
   font-size: 90%;
   -webkit-border-radius: 5px;
@@ -3274,7 +3274,7 @@ color
   border-radius: 5px;
   font-family: Consolas, "Courier New", Courier;
   text-shadow: none;
-  background-color: #002b36;
+  background-color: rgba(153,204,153,0.7);
   word-wrap: break-word;
   white-space: pre;
 }
@@ -3411,7 +3411,7 @@ color
   -webkit-border-radius: 4px;
   border-radius: 4px;
   padding: 0 10px;
-  color: #c5c8c6;
+  color: #ccc;
 }
 .article-entry .highlight pre {
   border: none;
@@ -3438,7 +3438,7 @@ color
 }
 .article-entry .highlight figcaption {
   font-size: 0.85em;
-  color: #969896;
+  color: #999;
   line-height: 1em;
   margin-bottom: 1em;
 }
@@ -3469,7 +3469,7 @@ color
   border-style: solid;
   border-color: #ddd;
   border-width: 1px 0;
-  background: #202225;
+  background: #333;
   padding: 15px 20px 15px 0;
 }
 .article-entry .gist .gist-file {
@@ -3495,8 +3495,8 @@ color
   border: none;
 }
 .article-entry .gist .gist-file .gist-meta {
-  background: #202225;
-  color: #969896;
+  background: #333;
+  color: #999;
   font: 0.85em "Lucida Grande", Verdana, "Helvetica Neue", Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
@@ -3531,10 +3531,10 @@ pre .command {
   color: #258fb8;
 }
 pre .comment {
-  color: #969896;
+  color: #999;
 }
 pre .keyword {
-  color: #b294bb;
+  color: #c9c;
 }
 pre .function,
 pre .class .params {
@@ -3543,18 +3543,18 @@ pre .class .params {
 pre .params,
 pre .function,
 pre .css .value {
-  color: #de935f;
+  color: #f99157;
 }
 pre .css ~ * .tag,
 pre .at_rule,
 pre .preprocessor {
-  color: #f0c674;
+  color: #fc6;
 }
 pre .built_in,
 pre .class,
 pre .css ~ * .class,
 pre .function {
-  color: #81a2be;
+  color: #69c;
 }
 pre .value,
 pre .number {
@@ -3562,7 +3562,7 @@ pre .number {
 }
 pre .id,
 pre .css ~ * .id {
-  color: #de935f;
+  color: #f99157;
 }
 pre .link_label,
 pre .code,

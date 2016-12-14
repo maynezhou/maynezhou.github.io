@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Netty相关概念 | M的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Netty相关概念Netty是一款java实现的nio高并发高性能网络通讯架构，基于事件的管道式架构设计。一句话说下：Event（事件）经过Pipeline（管道）中流转通过pipelinesink交给相应的Handler进行处理发生什么事，找相应的处理方法。12345graph LRChannel--&amp;gt;|ChannelEvent|ChannelPipelineChannelPipeline">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Netty相关概念">
+<meta property="og:url" content="http://www.zhouming.org/20016/11/04/Netty相关概念/index.html">
+<meta property="og:site_name" content="M的博客">
+<meta property="og:description" content="Netty相关概念Netty是一款java实现的nio高并发高性能网络通讯架构，基于事件的管道式架构设计。一句话说下：Event（事件）经过Pipeline（管道）中流转通过pipelinesink交给相应的Handler进行处理发生什么事，找相应的处理方法。12345graph LRChannel--&amp;gt;|ChannelEvent|ChannelPipelineChannelPipeline">
+<meta property="og:updated_time" content="2016-12-10T07:53:45.345Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Netty相关概念">
+<meta name="twitter:description" content="Netty相关概念Netty是一款java实现的nio高并发高性能网络通讯架构，基于事件的管道式架构设计。一句话说下：Event（事件）经过Pipeline（管道）中流转通过pipelinesink交给相应的Handler进行处理发生什么事，找相应的处理方法。12345graph LRChannel--&amp;gt;|ChannelEvent|ChannelPipelineChannelPipeline">
+  
+    <link rel="alternative" href="/atom.xml" title="M的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">M</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">道法自然</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=pp6fkZCXkpOU5tfXiMXJyw" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/maynezhou" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://user.qzone.qq.com/369454080?ADUIN=89761452&ADSESSION=1481685899&ADTAG=CLIENT.QQ.5503_FriendInfo_PersonalInfo.0&ADPUBNO=26642&ptlang=2052">lp</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">人法地、地法天、天法道、道法自然</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">M</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">M</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">道法自然</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=pp6fkZCXkpOU5tfXiMXJyw" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/maynezhou" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Netty相关概念" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/20016/11/04/Netty相关概念/" class="article-date">
+      <time datetime="+020016-11-04T02:13:00.000Z" itemprop="datePublished">20016-11-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Netty相关概念
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Netty/">Netty</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Netty相关概念">Netty相关概念</h1><p>Netty是一款java实现的nio高并发高性能网络通讯架构，基于事件的管道式架构设计。<br><em>一句话说下：Event（事件）经过Pipeline（管道）中流转通过pipelinesink交给相应的Handler进行处理</em><br><em>发生什么事，找相应的处理方法</em>。<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">Channel-<span class="subst">-&gt;</span>|ChannelEvent|ChannelPipeline</span><br><span class="line">ChannelPipeline-<span class="subst">-&gt;</span>|ChannelEvent|ChannelHandle1</span><br><span class="line">ChannelHandle1-<span class="subst">-&gt;</span>ChannelHandle2</span><br><span class="line">ChannelHandle2-<span class="subst">-&gt;</span><span class="attribute">...</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><a href="http://netty.io/4.1/api/index.html" target="_blank" rel="external">Netty API</a>  </p>
+<h6 id="Reactor模式">Reactor模式</h6><p>Reactor模式首先是事件驱动的，有一个或多个并发输入源，有一个Service Handler，有多个Request Handlers；这个Service Handler会同步的将输入的请求（Event）多路复用的分发给相应的Request Handler</p>
+<h6 id="Bootstrap">Bootstrap</h6><p>框架的启动类。<br>bossGroup<eventloopgroup>:分配任务的线程池，主要负责连接的建立<br>workerGroup<eventloopgroup>:处理任务的线程池，主要负责数据的接收、发送，处理数据读写等具体事件，并保证同一个连接在同一个线程中完成这两个步骤。</eventloopgroup></eventloopgroup></p>
+<h6 id="Channel">Channel</h6><p>全局管理器，获取一些全局信息及配置信息，Channel包含Channelpiple</p>
+<h6 id="ChannelPipeline">ChannelPipeline</h6><p>通讯管道，存放handler的容器，并有序的组织起来。他是控制ChannelEvent事件分发和传递的。<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">                                            I/O Request</span><br><span class="line">                                          via Channel or</span><br><span class="line">                                      ChannelHandlerContext</span><br><span class="line">                                                    |<span class="string"></span><br><span class="line">+---------------------------------------------------+---------------+  </span><br><span class="line"></span>|<span class="string">                           ChannelPipeline         </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">                                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------------------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  N                   </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               </span>|<span class="string">                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  N-1                 </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  .               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               .                                   .               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string"> ChannelHandlerContext.fireIN_EVT() ChannelHandlerContext.OUT_EVT()</span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">        [ method call]                       [method call]         </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               .                                   .               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               .                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  2                   </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               </span>|<span class="string">                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  1                   </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  </span>|<span class="string">               </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                                  \</span>|<span class="string">/              </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                       +-----------+----------+    </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                       </span>|<span class="string">      ChannelSink     </span>|<span class="string">    </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                       +-----------+----------+    </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                                   </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line">+---------------+-----------------------------------+---------------+  </span><br><span class="line">                </span>|<span class="string">                                  \</span>|<span class="string">/  </span><br><span class="line">+---------------+-----------------------------------+---------------+  </span><br><span class="line"></span>|<span class="string">               </span>|<span class="string">                                   </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">       [ Socket.read() ]                    [ Socket.write() ]     </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">                                                                   </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">  Netty Internal I/O Threads (Transport Implementation)            </span>|<span class="string">  </span><br><span class="line">+-------------------------------------------------------------------+  </span><br><span class="line">/**</span><br><span class="line">outbound[ Socket.write() ]:输出/写入流 倒序</span><br><span class="line">inbound[ Socket.read() ] :输入/读取流 正序</span><br><span class="line">eg:</span><br><span class="line">ChannelPipeline p = ...</span><br><span class="line">p.addLast("1", new InboundHandlerA());</span><br><span class="line">p.addLast("2", new InboundHandlerB());</span><br><span class="line">p.addLast("3", new OutboundHandlerA());</span><br><span class="line">p.addLast("4", new OutboundHandlerB());</span><br><span class="line">p.addLast("5", new InboundOutboundHandlerX());</span><br><span class="line"></span><br><span class="line">5实现了ChannelInboundHandler和ChannelOutboundHandler，</span><br><span class="line">如果34 不实现 ChannelInboundHandler,则inbound事件顺序是1,2,5</span><br><span class="line">如果12 不实现 ChannelOutboundHandler，则outbound事件顺序是 5,4,3</span><br><span class="line">**/</span></span><br></pre></td></tr></table></figure></p>
+<p>==++注意：ChannelPipeline的所有方法都是线程安全的++==</p>
+<p>总结：每个连接对应一个ChannelPipeline，ChannelPipeline维护了一个处理链，并提供了丰富的操作处理链的api。 处理链维护了一些列ChannelContext，其中head和tail由ChannelPipeline自己维护，用户无法修改这两个节点。每个ChannelContext包含一个ChannelHandler，所有ChannelContext是私有的线程安全的，但handler可以通过添加注解Sharable的方式来共享。ChannelPipeline提供了一系列操作TailContext和HeadContext的方法来达到处理handler的目的，但操作是由ChannelContext触发ChannelHandler完成的，而非直接操作handler。 </p>
+<h6 id="EventLoop">EventLoop</h6><p>主要为Channel处理IO操作，可以同时为多个channel提供服务</p>
+<h6 id="EventLoopsGroup">EventLoopsGroup</h6><p>线程池包含多个EventLoop</p>
+<h6 id="Channel-1">Channel</h6><p>表示一个Socket链接，和EventLoop一起处理IO。<br>一个channel会对应一个EventLoop，而一个EventLoop会对应一个线程，具体的线程使用交给EventLoopsGroup负责。</p>
+<h6 id="ChannelHandlerContext">ChannelHandlerContext</h6><p>pipleline与handler的连接桥梁，ChannelPipeline通过维护ChannelHandlerContext来对ChannelHandler进行维护，每一个ChannelPipeline的节点都是一个ChannelHandlerContext，因此被认为是私有的并且是线程安全的。一个ChannelHandlerContext只能对应一个ChannelHander，只对应一个Channel，而一个ChannelHander则可以对应多个ChannelHandlerContext。</p>
+<p>每一个请求都会创建ChannelPipeline,ChannelPipeline内部包含一个有ChannelHandlerContext组成的双向链表，context通过handler的skipFlags来查找下一个inbound/outbound，而具体的调用则通过invoker来完成，invoker保证了调用的线程安全，最终线程安全的调用了handler中的具体方法。<br>        context主要负责inbound/outbound事件的传递，由于context不会共用，还可以安全的存储自定义信息（见AttributeMap）</p>
+<h6 id="ChannelHandler">ChannelHandler</h6><p>事件处理的节点，每个事件到了handler这里就要被处理了，两个节点的切换是靠channelevent来完成的，一般我们在这里写一些逻辑。</p>
+<h6 id="ChannelInboundHandler">ChannelInboundHandler</h6><p>主要处理读操作，可以用来处理核心逻辑</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>对应事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChannelHandlerContext#fireChannelRegistered()</td>
+<td>注册连接</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelUnregistered()</td>
+<td>取消注册</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelActive()</td>
+<td>连接激活</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelRead(Object)</td>
+<td>读取数据</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelReadComplete()</td>
+<td>读取完成</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireExceptionCaught(Throwable)</td>
+<td>发生异常</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireUserEventTriggered(Object)</td>
+<td>用户事件触发</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelWritabilityChanged()</td>
+<td>可写状态改变</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelInactive()</td>
+<td>检测到连接断开</td>
+</tr>
+</tbody>
+</table>
+<h6 id="ChannelOutboundHandler">ChannelOutboundHandler</h6><p>主要处理写操作</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>对应事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChannelHandlerContext#bind(SocketAddress, ChannelPromise)</td>
+<td>绑定端口</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#connect(SocketAddress, SocketAddress, ChannelPromise)</td>
+<td>发起连接</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#write(Object, ChannelPromise)</td>
+<td>写数据</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#flush()</td>
+<td>将写的数据发送</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#read()</td>
+<td>触发读操作</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#disconnect(ChannelPromise)</td>
+<td>与对方的连接断开</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#close(ChannelPromise)</td>
+<td>关闭自己的连接</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#deregister()</td>
+<td>触发取消注册</td>
+</tr>
+</tbody>
+</table>
+<h6 id="ChannelEvent">ChannelEvent</h6><p>通讯事件，是数据或者状态的载体，对Channel进行操作时会产生一个event，并发送到pipleline。piple会选择一个handler进行处理，处理之后可能会产生新的event,并流转到下个handler。</p>
+<h6 id="Future">Future</h6><p>在Netty中所有的IO操作都是异步的，因此无法立刻得知消息是否被正确处理，但是我们可以过一会等它执行完成或者直接注册一个监听，具体的实现就是通过Future和ChannelFutures,他们可以注册一个监听，当操作执行成功或失败时监听会自动触发。总之，所有的操作都会返回一个ChannelFuture。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/20016/11/04/Netty相关概念/">Netty相关概念</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 M 的个人博客">M</a></p>
+        <p><span>发布时间:</span>20016年11月04日 - 10时13分</p>
+        <p><span>最后更新:</span>2016年12月10日 - 15时53分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/20016/11/04/Netty相关概念/" title="Netty相关概念">http://www.zhouming.org/20016/11/04/Netty相关概念/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.zhouming.org/20016/11/04/Netty相关概念/　　作者: M" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/20016/11/09/Spring是什么/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Spring是什么
+        
+      </div>
+    </a>
+  
+  
+    <a href="/20016/10/25/Java服务器架构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java手游服务器架构</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Netty相关概念"><span class="toc-number">1.</span> <span class="toc-text">Netty相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Reactor模式"><span class="toc-number">1.0.0.0.0.1.</span> <span class="toc-text">Reactor模式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Bootstrap"><span class="toc-number">1.0.0.0.0.2.</span> <span class="toc-text">Bootstrap</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Channel"><span class="toc-number">1.0.0.0.0.3.</span> <span class="toc-text">Channel</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChannelPipeline"><span class="toc-number">1.0.0.0.0.4.</span> <span class="toc-text">ChannelPipeline</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#EventLoop"><span class="toc-number">1.0.0.0.0.5.</span> <span class="toc-text">EventLoop</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#EventLoopsGroup"><span class="toc-number">1.0.0.0.0.6.</span> <span class="toc-text">EventLoopsGroup</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Channel-1"><span class="toc-number">1.0.0.0.0.7.</span> <span class="toc-text">Channel</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChannelHandlerContext"><span class="toc-number">1.0.0.0.0.8.</span> <span class="toc-text">ChannelHandlerContext</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChannelHandler"><span class="toc-number">1.0.0.0.0.9.</span> <span class="toc-text">ChannelHandler</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChannelInboundHandler"><span class="toc-number">1.0.0.0.0.10.</span> <span class="toc-text">ChannelInboundHandler</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChannelOutboundHandler"><span class="toc-number">1.0.0.0.0.11.</span> <span class="toc-text">ChannelOutboundHandler</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChannelEvent"><span class="toc-number">1.0.0.0.0.12.</span> <span class="toc-text">ChannelEvent</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Future"><span class="toc-number">1.0.0.0.0.13.</span> <span class="toc-text">Future</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="20016/11/04/Netty相关概念/" data-title="Netty相关概念" data-url="http://www.zhouming.org/20016/11/04/Netty相关概念/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/20016/11/09/Spring是什么/" title="上一篇: Spring是什么">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/20016/10/25/Java服务器架构/" title="下一篇: Java手游服务器架构">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/20016/11/11/log4j/">log4j</a></li><li class="post-list-item"><a class="post-list-link" href="/20016/11/11/Idea-自定义-LiveTemplates/">Idea 自定义 LiveTemplates</a></li><li class="post-list-item"><a class="post-list-link" href="/20016/11/09/slf4j-是什么/">slf4j 是什么</a></li><li class="post-list-item"><a class="post-list-link" href="/20016/11/09/Spring是什么/">Spring是什么</a></li><li class="post-list-item"><a class="post-list-link" href="/20016/11/04/Netty相关概念/">Netty相关概念</a></li><li class="post-list-item"><a class="post-list-link" href="/20016/10/25/Java服务器架构/">Java手游服务器架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/08/Spring-applicationcontext-xml-模版/">Tomcat诡异的自动关闭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/25/暗淡/">暗淡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/凯旋之门/">凯旋之门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/08/关于Update和FixedUpdate的理解/">关于Update和FixedUpdate的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/07/Tomcat诡异的自动关闭/">Tomcat诡异的自动关闭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/20151125-HexoConfig/">GitHub Blog 配置流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/03/11/年长/">年长</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/07/18/平常日子/">平常日子</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/07/18/童趣/">童趣</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/14/我们能拥有孩子多少年？/">我们能拥有孩子多少年？</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/07/平凡/">平凡</a></li><li class="post-list-item"><a class="post-list-link" href="/2012/04/27/文眉/">文眉</a></li><li class="post-list-item"><a class="post-list-link" href="/2011/02/08/童趣2/">童趣</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/08/01/暑热盛夏/">暑热盛夏</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/05/10/小家初建成/">小家初建成</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/02/17/好久没写了！/">好久没写了！</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/11/26/男人，女人/">男人，女人</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/08/19/昨晚，老婆迷失了！/">昨晚，老婆迷失了！</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/08/07/哈哈-太爽了！/">哈哈 太爽了！</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/08/02/北京欢迎你/">北京欢迎你</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/07/28/感受中医/">感受中医</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/07/27/老婆不在家/">老婆不在家</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/05/19/国殇/">国殇</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/03/01/我的眼睛/">我的眼睛</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/02/13/恐惧/">恐惧</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/01/27/平静的周末/">平静的周末</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/01/24/人物组队跟随模式的设计/">人物组队跟随模式的设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/01/04/投入的工作着/">投入的工作着</a></li><li class="post-list-item"><a class="post-list-link" href="/2008/01/03/2008年伊始/">2008年伊始</a></li><li class="post-list-item"><a class="post-list-link" href="/2007/12/23/回忆以前的游戏时代——网通足球永远的传说/">回忆以前的游戏时代——网通足球永远的传说</a></li><li class="post-list-item"><a class="post-list-link" href="/2007/12/23/回忆以前的游戏时代——我们的足球/">回忆以前的游戏时代——我们的足球</a></li><li class="post-list-item"><a class="post-list-link" href="/2007/03/05/远见与短见/">远见与短见</a></li><li class="post-list-item"><a class="post-list-link" href="/2007/02/25/东北一行/">东北一行</a></li><li class="post-list-item"><a class="post-list-link" href="/2007/02/05/毕业后的第一次回东北/">毕业后的第一次回东北</a></li><li class="post-list-item"><a class="post-list-link" href="/2007/01/29/昨天买房了/">昨天买房了</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/12/06/不协调/">不协调</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/11/06/人的生存能力/">人的生存能力</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/26/最近大家都好烦/">最近大家都好烦</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/20/原始疯狂/">原始疯狂</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/19/窘迫/">窘迫</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/18/开心/">开心</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/16/速疗/">速疗</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/14/老婆的弟弟/">老婆的弟弟</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/13/心情好点了/">心情好点了</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/12/又一次争吵/">又一次争吵</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/11/随便想想/">随便想想</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/10/10/磨砺成熟/">磨砺成熟</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/07/21/充电中/">充电中...</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/07/12/利益/">利益</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/07/10/一般/">一般</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/07/06/无趣/">无趣</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/07/05/既然说了就要做到！/">既然说了就要做到！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/07/05/女人/">女人</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/29/最近/">最近</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/27/发现/">发现</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/23/最后一天/">最后一天</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/21/没啥说的/">没啥说的</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/19/那天晚上/">那天晚上</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/15/解决/">解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/14/不好/">不好</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/14/头痛/">头痛</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/12/你让我写诗之三/">你让我写诗之三</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/12/幸与不幸/">幸与不幸</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/12/好消息！/">好消息！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/09/周末/">周末</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/09/飘/">飘[詩]</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/08/狂热/">狂热</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/07/他吗的/">他吗的</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/05/昨晚/">昨晚</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/02/担心/">担心</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/06/01/周四/">周四</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/31/表现还成/">表现还成</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/30/往往是这样/">往往是这样</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/29/自己的王国/">自己的王国</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/26/悔过自新/">悔过自新</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/25/你让我写诗之二/">你让我写诗之二</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/24/你让我写诗之一/">你让我写诗之一</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/23/5月23日/">5月23日</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/22/心疼/">心疼</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/22/空虚/">空虚</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/16/周二了！/">周二了！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/15/鞋子/">鞋子</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/11/忙碌的一天/">忙碌的一天</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/09/怎么这样！/">怎么这样！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/09/5月6日/">5月6日</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/05/09/52泰山游记/">52泰山游记</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/04/30/传说/">传说</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/04/29/假期前的疯狂！/">假期前的疯狂！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/04/29/厄运！！！/">厄运！！！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/04/28/不好/">不好..</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/04/27/计划/">计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/04/26/也许/">也许</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/03/03/转折/">转折</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/02/20/面TM试/">面TM试</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/02/14/不愧是名著！/">不愧是名著！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/02/10/投递/">投递</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/02/06/下雪/">下雪</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/02/04/吃！/">吃！</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/02/03/不想丝连/">不想丝连</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/31/初三/">初三</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/29/初一/">初一</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/27/除夕前夜/">除夕前夜</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/25/美/">美</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/22/工作才是生活的全部/">工作才是生活的全部</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/22/创业/">创业</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/14/凌晨/">凌晨</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/13/爽-1725/">爽 1725</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/13/1月13日/">1月13日</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/12/1月12日/">1月12日</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/11/1月11日/">1月11日</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/06/诗一首/">诗一首</a></li><li class="post-list-item"><a class="post-list-link" href="/2006/01/01/元月元日/">元月元日</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/12/31/最后一天2005/">最后一天2005</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/12/29/12月29日/">12月29日</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/12/28/12月28日/">12月28日</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/12/27/12月27日/">12月27日</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/12/26/星期一/">星期一</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/12/24/平安夜/">平安夜</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/12/23/昨晚-1/">昨晚(1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/11/05/冷静/">冷静..</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/11/04/流星/">流星</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/11/03/感悟/">感悟...</a></li><li class="post-list-item"><a class="post-list-link" href="/2005/10/31/我为何而生/">我为何而生</a></li><li class="post-list-item"><a class="post-list-link" href="/2003/03/11/梦-诗/">梦</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 M
+            </div>
+            <div class="footer-right">
+                All rights reserved power by <a href="http://www.zhouming.org/" target="_blank">M</a>
+				<!-- 原版暂存 -->
+				<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

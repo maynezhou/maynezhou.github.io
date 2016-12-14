@@ -142,7 +142,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a>
+                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a>
                     </div>
                 </section>
                 
@@ -216,6 +216,679 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-log4j" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/20016/11/11/log4j/" class="article-date">
+      <time datetime="+020016-11-11T06:52:00.000Z" itemprop="datePublished">20016-11-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/20016/11/11/log4j/">log4j</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE log4j:configuration SYSTEM "log4j.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">log4j:configuration</span> <span class="attribute">xmlns:log4j</span>=<span class="value">"http://jakarta.apache.org/log4j/"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 输出日志到控制台  ConsoleAppender --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">appender</span> <span class="attribute">name</span>=<span class="value">"console"</span></span><br><span class="line">              <span class="attribute">class</span>=<span class="value">"org.apache.log4j.ConsoleAppender"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"Threshold"</span> <span class="attribute">value</span>=<span class="value">"debug"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&lt;param name="Target" value="System.err"&gt;&lt;/param&gt;--&gt;</span> <span class="comment">&lt;!-- 红色打印 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&lt;param name="Target" value="System.out"&gt;&lt;/param&gt; &amp;lt;!&amp;ndash; 黑色打印 &amp;ndash;&amp;gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">layout</span> <span class="attribute">class</span>=<span class="value">"org.apache.log4j.PatternLayout"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"ConversionPattern"</span> <span class="attribute">value</span>=<span class="value">"[%d&#123;yyyy-MM-dd HH:mm:ss\&#125; %-5p] [%t] &#123;%c:%L&#125;：%m%n"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--日志架构需求--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【后台日志】实时写入的日志文件，包含服务器全部日志信息，作为观察后台使用，每次启服可以覆盖 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【主日志】服务器主日志文件，包含服务器全部日志信息，作为永久数据进行存储，每天一个文件 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【异常日志】服务器错误日志文件，包含服务器代码运行异常的日志信息，作为永久数据进行存储，每天一个文件 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【预警日志】服务器预警，当服务器发生严重异常的时候，向某些邮箱发送邮件以通知相关人员--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【功能日志】服务器功能模块日志文件，按照日志统计需求存储相应的数据日志，作为永久数据进行存储，每天一批文件，按照功能划分文件 --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 后台日志 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">appender</span> <span class="attribute">name</span>=<span class="value">"_console"</span></span><br><span class="line">              <span class="attribute">class</span>=<span class="value">"org.apache.log4j.FileAppender"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"File"</span> <span class="attribute">value</span>=<span class="value">"logs/_console.log"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"ImmediateFlush"</span> <span class="attribute">value</span>=<span class="value">"true"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"Threshold"</span> <span class="attribute">value</span>=<span class="value">"debug"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"Append"</span> <span class="attribute">value</span>=<span class="value">"false"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">layout</span> <span class="attribute">class</span>=<span class="value">"org.apache.log4j.PatternLayout"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"ConversionPattern"</span> <span class="attribute">value</span>=<span class="value">"[%d&#123;yyyy-MM-dd HH:mm:ss\&#125; %-5p] [%t] &#123;%c:%L&#125;：%m%n"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 主日志 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">appender</span> <span class="attribute">name</span>=<span class="value">"server"</span></span><br><span class="line">              <span class="attribute">class</span>=<span class="value">"org.apache.log4j.DailyRollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"Threshold"</span> <span class="attribute">value</span>=<span class="value">"info"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"ImmediateFlush"</span> <span class="attribute">value</span>=<span class="value">"true"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"File"</span> <span class="attribute">value</span>=<span class="value">"logs/server.log"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"DatePattern"</span> <span class="attribute">value</span>=<span class="value">"'.'yyyy-MM-dd'.log'"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">layout</span> <span class="attribute">class</span>=<span class="value">"org.apache.log4j.PatternLayout"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"ConversionPattern"</span> <span class="attribute">value</span>=<span class="value">"[%d&#123;yyyy-MM-dd HH:mm:ss\&#125; %-5p] [%t] &#123;%c:%L&#125;：%m%n"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 异常日志 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">appender</span> <span class="attribute">name</span>=<span class="value">"error"</span></span><br><span class="line">              <span class="attribute">class</span>=<span class="value">"org.apache.log4j.DailyRollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"Threshold"</span> <span class="attribute">value</span>=<span class="value">"warn"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"ImmediateFlush"</span> <span class="attribute">value</span>=<span class="value">"true"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"Target"</span> <span class="attribute">value</span>=<span class="value">"System.err"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"File"</span> <span class="attribute">value</span>=<span class="value">"logs/error.log"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"DatePattern"</span> <span class="attribute">value</span>=<span class="value">"'.'yyyy-MM-dd'.log'"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">layout</span> <span class="attribute">class</span>=<span class="value">"org.apache.log4j.PatternLayout"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"ConversionPattern"</span> <span class="attribute">value</span>=<span class="value">"[%d&#123;yyyy-MM-dd HH:mm:ss\&#125; %-5p] [%t] &#123;%c:%L&#125;：%m%n"</span>&gt;</span><span class="tag">&lt;/<span class="title">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 预警日志 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--TODO--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 功能日志 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--TODO--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">root</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">priority</span> <span class="attribute">value</span>=<span class="value">"debug"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">appender-ref</span> <span class="attribute">ref</span>=<span class="value">"console"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">appender-ref</span> <span class="attribute">ref</span>=<span class="value">"_console"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">appender-ref</span> <span class="attribute">ref</span>=<span class="value">"server"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="title">root</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">log4j:configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--log4j.xml配置文件参数说明--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://wiki.apache.org/logging-log4j/Log4jXmlFormat --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span><br><span class="line">===================================================</span><br><span class="line">输出级别的种类</span><br><span class="line">    OFF 、FATAL 、ERROR、WARN、INFO、DEBUG、TRACE 、ALL</span><br><span class="line">        OFF 为最高等级 关闭了日志信息</span><br><span class="line">        FATAL  为可能导致应用中止的严重事件错误</span><br><span class="line">        ERROR 为严重错误 主要是程序的错误</span><br><span class="line">        WARN 为一般警告，比如session丢失</span><br><span class="line">        INFO 为一般要显示的信息，比如登录登出</span><br><span class="line">        DEBUG 为程序的调试信息</span><br><span class="line">        TRACE 为比DEBUG更细粒度的事件信息</span><br><span class="line">        ALL 为最低等级，将打开所有级别的日志</span><br><span class="line">===================================================</span><br><span class="line">配置日志信息输出目的地</span><br><span class="line">     org.apache.log4j.ConsoleAppender【控制台】</span><br><span class="line">        log4j.appender.console.Threshold=DEBUG 指定日志消息的输出最低层次。</span><br><span class="line">        log4j.appender.console.ImmediateFlush=true 默认值是true,意谓着所有的消息都会被立即输出。</span><br><span class="line">        log4j.appender.console.Target=System.err 默认情况下是：System.out,指定输出控制台</span><br><span class="line">     org.apache.log4j.FileAppender【文件】</span><br><span class="line">        log4j.appender.logFile.Threshold=DEBUG 指定日志消息的输出最低层次。</span><br><span class="line">        log4j.appender.logFile.ImmediateFlush=true 默认值是true,意谓着所有的消息都会被立即输出。</span><br><span class="line">        log4j.appender.logFile.Append=false 默认值是true,即将消息增加到指定文件中，false指将消息覆盖指定的文件内容。</span><br><span class="line">        log4j.appender.logFile.File=D:/logs/log.log4j 指定消息输出到log.log4j文件。</span><br><span class="line">     org.apache.log4j.DailyRollingFileAppender【每天产生一个日志文件】</span><br><span class="line">        log4j.appender.dailyFile.Threshold=DEBUG 指定日志消息的输出最低层次。</span><br><span class="line">        log4j.appender.dailyFile.ImmediateFlush=true 默认值是true,意谓着所有的消息都会被立即输出。</span><br><span class="line">        log4j.appender.dailyFile.Append=true 默认值是true,即将消息增加到指定文件中，false指将消息覆盖指定的文件内容。</span><br><span class="line">        log4j.appender.dailyFile.File=D:/logs/log.log4j 指定消息输出到log.log4j文件。</span><br><span class="line">        log4j.appender.dailyFile.DatePattern='.'yyyy-MM-dd 文件命名规范</span><br><span class="line">    org.apache.log4j.RollingFileAppender【文件大小到达指定尺寸的时候产生一个新的文件】</span><br><span class="line">        log4j.appender.rollingFile.Threshold=DEBUG 指定日志消息的输出最低层次。</span><br><span class="line">        log4j.appender.rollingFile.ImmediateFlush=true 默认值是true,意谓着所有的消息都会被立即输出。</span><br><span class="line">        log4j.appender.rollingFile.Append=true 默认值是true,即将消息增加到指定文件中，false指将消息覆盖指定的文件内容。</span><br><span class="line">        log4j.appender.rollingFile.File=D:/logs/log.log4j 指定消息输出到log.log4j文件。</span><br><span class="line">        log4j.appender.rollingFile.MaxFileSize=200KB 后缀可以是KB, MB 或者是 GB. 在日志文件到达该大小时，将会自动滚动，即将原来的内容移到log.log4j.1文件。</span><br><span class="line">        log4j.appender.rollingFile.MaxBackupIndex=2 指定可以产生的滚动文件的最大数。</span><br><span class="line">        log4j.appender.rollingFile.layout=org.apache.log4j.PatternLayout</span><br><span class="line">        log4j.appender.A1.layout.ConversionPattern=%-4r %-5p %d&#123;yyyy-MM-dd HH:mm:ssS&#125; %c %m%n</span><br><span class="line">     org.apache.log4j.WriterAppender【将日志信息以流格式发送到任意指定的地方】</span><br><span class="line">     org.apache.log4j.net.SMTPAppender【发送日志到指定邮件】</span><br><span class="line">        log4j.appender.mail=org.apache.log4j.net.SMTPAppender</span><br><span class="line">        log4j.appender.mail.Threshold=FATAL</span><br><span class="line">        log4j.appender.mail.BufferSize=10</span><br><span class="line">        log4j.appender.mail.From = xxx@mail.com</span><br><span class="line">        log4j.appender.mail.SMTPHost=mail.com</span><br><span class="line">        log4j.appender.mail.Subject=Log4J Message</span><br><span class="line">        log4j.appender.mail.To= xxx@mail.com</span><br><span class="line">    org.apache.log4j.jdbc.JDBCAppender【应用于数据库】</span><br><span class="line">===================================================</span><br><span class="line">配置日志信息的格式</span><br><span class="line">     org.apache.log4j.HTMLLayout（以HTML表格形式布局），</span><br><span class="line">     org.apache.log4j.PatternLayout（可以灵活地指定布局模式），</span><br><span class="line">     org.apache.log4j.SimpleLayout（包含日志信息的级别和信息字符串），</span><br><span class="line">     org.apache.log4j.TTCCLayout（包含日志产生的时间、线程、类别等等信息）</span><br><span class="line">===================================================</span><br><span class="line">日志信息格式中几个符号所代表的含义：</span><br><span class="line">    -X号: X信息输出时左对齐；</span><br><span class="line">    %p: 输出日志信息优先级，即DEBUG，INFO，WARN，ERROR，FATAL,</span><br><span class="line">    %d: 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d&#123;yyy MMM dd HH:mm:ss,SSS&#125;，输出类似：2002年10月18日 22：10：28，921</span><br><span class="line">    %r: 输出自应用启动到输出该log信息耗费的毫秒数</span><br><span class="line">    %c: 输出日志信息所属的类目，通常就是所在类的全名</span><br><span class="line">    %t: 输出产生该日志事件的线程名</span><br><span class="line">    %l: 输出日志事件的发生位置，相当于%C.%M(%F:%L)的组合,包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main (TestLog4.java:10)</span><br><span class="line">    %x: 输出和当前线程相关联的NDC(嵌套诊断环境),尤其用到像java servlets这样的多客户多线程的应用中。</span><br><span class="line">    %%: 输出一个"%"字符</span><br><span class="line">    %F: 输出日志消息产生时所在的文件名称</span><br><span class="line">    %L: 输出代码中的行号</span><br><span class="line">    %m: 输出代码中指定的消息,产生的日志具体信息</span><br><span class="line">    %n: 输出一个回车换行符，Windows平台为"/r/n"，Unix平台为"/n"输出日志信息换行</span><br><span class="line">    可以在%与模式字符之间加上修饰符来控制其最小宽度、最大宽度、和文本的对齐方式。如：</span><br><span class="line">    1)%20c：指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，默认的情况下右对齐。</span><br><span class="line">    2)%-20c:指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，"-"号指定左对齐。</span><br><span class="line">    3)%.30c:指定输出category的名称，最大的宽度是30，如果category的名称大于30的话，就会将左边多出的字符截掉，但小于30的话也不会有空格。</span><br><span class="line">    4)%20.30c:如果category的名称小于20就补空格，并且右对齐，如果其名称长于30字符，就从左边较远输出的字符截掉。</span><br><span class="line">===================================================</span><br><span class="line"></span><br><span class="line">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log4j/">log4j</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Idea-自定义-LiveTemplates" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/20016/11/11/Idea-自定义-LiveTemplates/" class="article-date">
+      <time datetime="+020016-11-11T06:25:00.000Z" itemprop="datePublished">20016-11-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/20016/11/11/Idea-自定义-LiveTemplates/">Idea 自定义 LiveTemplates</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Idea_自定义_LiveTemplates">Idea 自定义 LiveTemplates</h1><p>设置自定义LiveTemplates，方便使用。<br><em>注：idea的设置已经导出为 setting.jar了，之后可以直接导入。<br>另外关于方法的注释应该在方法作用域内才能起作用，就是在方法中注释下再剪切到方法头。。。</em><br>创建Template Group: zm_custom<br>组下创建以下快捷键方式：  </p>
+<ol>
+<li>类注释<br>Abbreviation: z_classdes<br>Description: addClassDes<br>```java<br>/**</li>
+</ol>
+<ul>
+<li>$cursor$</li>
+<li></li>
+<li>@author Zhou Ming</li>
+<li>@see  　$package$.$class$ </li>
+<li>@since  0.9<br>*/<br>```  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Expression </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cursor</td>
+<td></td>
+</tr>
+<tr>
+<td>package</td>
+<td>currentPackage()</td>
+</tr>
+<tr>
+<td>class</td>
+<td>className()  </td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>方法注释<br>Abbreviation: z_methoddes<br>Description: addMethod Des<pre><code class="java"><span class="comment">/**
+* $cursor$
+*
+$params$
+* <span class="doctag">@return</span> $return$
+* <span class="doctag">@throws</span>
+*/</span>
+</code></pre>
+Name | Expression<br>—|—<br>cursor |<br>params | ==@注释==<br>return | methodReturnType()  </li>
+</ol>
+<p><em>==注释==：groovyScript(“def result=’’; def params=\”${_1}\”.replaceAll(‘[\\[|\\]|\\s]’, ‘’).split(‘,’).toList(); for(i = 0; i &lt; params.size(); i++) {result+=’ </em> @param ‘ + params[i] + ((i &lt; params.size() - 1) ? ‘\n’ : ‘’)}; return result”, methodParameters())*</p>
+<ol>
+<li>switch<br>Abbreviation: z_swit<br>Description: switch case<pre><code class="java"><span class="keyword">switch</span>($VAR$){
+<span class="keyword">case</span> $VAR_CHILDREN$:
+<span class="keyword">break</span>;$END$
+}
+</code></pre>
+Name | Expression<br>—|—<br>VAR | suggestVariableName()<br>VAR_CHILDREN | suggestVariableName()</li>
+<li>控制台打印<br>Abbreviation: z_sysout<br>Description: System.out.println<pre><code class="java">System.out.println($cursor$);
+</code></pre>
+Name | Expression<br>—|—<br>cursor | </li>
+<li>日志注册<br>Abbreviation: z_log<br>Description: create log<pre><code class="java"><span class="keyword">private</span> Logger logger = LoggerFactory.getLogger($<span class="class"><span class="keyword">class</span>$.<span class="title">class</span>)</span>;
+</code></pre>
+Name | Expression<br>—|—<br>class | className()</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/IDE/">IDE</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Idea/">Idea</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-slf4j-是什么" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/20016/11/09/slf4j-是什么/" class="article-date">
+      <time datetime="+020016-11-09T06:42:00.000Z" itemprop="datePublished">20016-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/20016/11/09/slf4j-是什么/">slf4j 是什么</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="slf4j_相关概念">slf4j 相关概念</h1><p>slf4j 是一种日志框架，按此框架搭建日志系统之后可以随意切换具体日志系统，比如使用log4j或是java原生日志。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spring是什么" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/20016/11/09/Spring是什么/" class="article-date">
+      <time datetime="+020016-11-09T03:48:00.000Z" itemprop="datePublished">20016-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/20016/11/09/Spring是什么/">Spring是什么</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Spring相关概念">Spring相关概念</h1><p>Spring 是容器管理，主要管理bean 和 properties文件。通过ApplicationContext.xml进行管理</p>
+<p>关于路径：<br>classpath：引用src目录下的文件写法<br>file：绝对路径写法</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Netty相关概念" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/20016/11/04/Netty相关概念/" class="article-date">
+      <time datetime="+020016-11-04T02:13:00.000Z" itemprop="datePublished">20016-11-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/20016/11/04/Netty相关概念/">Netty相关概念</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Netty相关概念">Netty相关概念</h1><p>Netty是一款java实现的nio高并发高性能网络通讯架构，基于事件的管道式架构设计。<br><em>一句话说下：Event（事件）经过Pipeline（管道）中流转通过pipelinesink交给相应的Handler进行处理</em><br><em>发生什么事，找相应的处理方法</em>。<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">Channel-<span class="subst">-&gt;</span>|ChannelEvent|ChannelPipeline</span><br><span class="line">ChannelPipeline-<span class="subst">-&gt;</span>|ChannelEvent|ChannelHandle1</span><br><span class="line">ChannelHandle1-<span class="subst">-&gt;</span>ChannelHandle2</span><br><span class="line">ChannelHandle2-<span class="subst">-&gt;</span><span class="attribute">...</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><a href="http://netty.io/4.1/api/index.html" target="_blank" rel="external">Netty API</a>  </p>
+<h6 id="Reactor模式">Reactor模式</h6><p>Reactor模式首先是事件驱动的，有一个或多个并发输入源，有一个Service Handler，有多个Request Handlers；这个Service Handler会同步的将输入的请求（Event）多路复用的分发给相应的Request Handler</p>
+<h6 id="Bootstrap">Bootstrap</h6><p>框架的启动类。<br>bossGroup<eventloopgroup>:分配任务的线程池，主要负责连接的建立<br>workerGroup<eventloopgroup>:处理任务的线程池，主要负责数据的接收、发送，处理数据读写等具体事件，并保证同一个连接在同一个线程中完成这两个步骤。</eventloopgroup></eventloopgroup></p>
+<h6 id="Channel">Channel</h6><p>全局管理器，获取一些全局信息及配置信息，Channel包含Channelpiple</p>
+<h6 id="ChannelPipeline">ChannelPipeline</h6><p>通讯管道，存放handler的容器，并有序的组织起来。他是控制ChannelEvent事件分发和传递的。<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">                                            I/O Request</span><br><span class="line">                                          via Channel or</span><br><span class="line">                                      ChannelHandlerContext</span><br><span class="line">                                                    |<span class="string"></span><br><span class="line">+---------------------------------------------------+---------------+  </span><br><span class="line"></span>|<span class="string">                           ChannelPipeline         </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">                                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------------------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  N                   </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               </span>|<span class="string">                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  N-1                 </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  .               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               .                                   .               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string"> ChannelHandlerContext.fireIN_EVT() ChannelHandlerContext.OUT_EVT()</span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">        [ method call]                       [method call]         </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               .                                   .               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               .                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  2                   </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">               </span>|<span class="string">                                  \</span>|<span class="string">/              </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    </span>|<span class="string">                    Channel Handler  1                   </span>|<span class="string">    </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">    +----------+-----------------------------------+----------+    </span>|</span><br><span class="line">|<span class="string">              /</span>|<span class="string">\                                  </span>|<span class="string">               </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                                  \</span>|<span class="string">/              </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                       +-----------+----------+    </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                       </span>|<span class="string">      ChannelSink     </span>|<span class="string">    </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                       +-----------+----------+    </span>|</span><br><span class="line">|<span class="string">               </span>|<span class="string">                                   </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line">+---------------+-----------------------------------+---------------+  </span><br><span class="line">                </span>|<span class="string">                                  \</span>|<span class="string">/  </span><br><span class="line">+---------------+-----------------------------------+---------------+  </span><br><span class="line"></span>|<span class="string">               </span>|<span class="string">                                   </span>|<span class="string">               </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">       [ Socket.read() ]                    [ Socket.write() ]     </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">                                                                   </span>|<span class="string">  </span><br><span class="line"></span>|<span class="string">  Netty Internal I/O Threads (Transport Implementation)            </span>|<span class="string">  </span><br><span class="line">+-------------------------------------------------------------------+  </span><br><span class="line">/**</span><br><span class="line">outbound[ Socket.write() ]:输出/写入流 倒序</span><br><span class="line">inbound[ Socket.read() ] :输入/读取流 正序</span><br><span class="line">eg:</span><br><span class="line">ChannelPipeline p = ...</span><br><span class="line">p.addLast("1", new InboundHandlerA());</span><br><span class="line">p.addLast("2", new InboundHandlerB());</span><br><span class="line">p.addLast("3", new OutboundHandlerA());</span><br><span class="line">p.addLast("4", new OutboundHandlerB());</span><br><span class="line">p.addLast("5", new InboundOutboundHandlerX());</span><br><span class="line"></span><br><span class="line">5实现了ChannelInboundHandler和ChannelOutboundHandler，</span><br><span class="line">如果34 不实现 ChannelInboundHandler,则inbound事件顺序是1,2,5</span><br><span class="line">如果12 不实现 ChannelOutboundHandler，则outbound事件顺序是 5,4,3</span><br><span class="line">**/</span></span><br></pre></td></tr></table></figure></p>
+<p>==++注意：ChannelPipeline的所有方法都是线程安全的++==</p>
+<p>总结：每个连接对应一个ChannelPipeline，ChannelPipeline维护了一个处理链，并提供了丰富的操作处理链的api。 处理链维护了一些列ChannelContext，其中head和tail由ChannelPipeline自己维护，用户无法修改这两个节点。每个ChannelContext包含一个ChannelHandler，所有ChannelContext是私有的线程安全的，但handler可以通过添加注解Sharable的方式来共享。ChannelPipeline提供了一系列操作TailContext和HeadContext的方法来达到处理handler的目的，但操作是由ChannelContext触发ChannelHandler完成的，而非直接操作handler。 </p>
+<h6 id="EventLoop">EventLoop</h6><p>主要为Channel处理IO操作，可以同时为多个channel提供服务</p>
+<h6 id="EventLoopsGroup">EventLoopsGroup</h6><p>线程池包含多个EventLoop</p>
+<h6 id="Channel-1">Channel</h6><p>表示一个Socket链接，和EventLoop一起处理IO。<br>一个channel会对应一个EventLoop，而一个EventLoop会对应一个线程，具体的线程使用交给EventLoopsGroup负责。</p>
+<h6 id="ChannelHandlerContext">ChannelHandlerContext</h6><p>pipleline与handler的连接桥梁，ChannelPipeline通过维护ChannelHandlerContext来对ChannelHandler进行维护，每一个ChannelPipeline的节点都是一个ChannelHandlerContext，因此被认为是私有的并且是线程安全的。一个ChannelHandlerContext只能对应一个ChannelHander，只对应一个Channel，而一个ChannelHander则可以对应多个ChannelHandlerContext。</p>
+<p>每一个请求都会创建ChannelPipeline,ChannelPipeline内部包含一个有ChannelHandlerContext组成的双向链表，context通过handler的skipFlags来查找下一个inbound/outbound，而具体的调用则通过invoker来完成，invoker保证了调用的线程安全，最终线程安全的调用了handler中的具体方法。<br>        context主要负责inbound/outbound事件的传递，由于context不会共用，还可以安全的存储自定义信息（见AttributeMap）</p>
+<h6 id="ChannelHandler">ChannelHandler</h6><p>事件处理的节点，每个事件到了handler这里就要被处理了，两个节点的切换是靠channelevent来完成的，一般我们在这里写一些逻辑。</p>
+<h6 id="ChannelInboundHandler">ChannelInboundHandler</h6><p>主要处理读操作，可以用来处理核心逻辑</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>对应事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChannelHandlerContext#fireChannelRegistered()</td>
+<td>注册连接</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelUnregistered()</td>
+<td>取消注册</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelActive()</td>
+<td>连接激活</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelRead(Object)</td>
+<td>读取数据</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelReadComplete()</td>
+<td>读取完成</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireExceptionCaught(Throwable)</td>
+<td>发生异常</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireUserEventTriggered(Object)</td>
+<td>用户事件触发</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelWritabilityChanged()</td>
+<td>可写状态改变</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#fireChannelInactive()</td>
+<td>检测到连接断开</td>
+</tr>
+</tbody>
+</table>
+<h6 id="ChannelOutboundHandler">ChannelOutboundHandler</h6><p>主要处理写操作</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>对应事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChannelHandlerContext#bind(SocketAddress, ChannelPromise)</td>
+<td>绑定端口</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#connect(SocketAddress, SocketAddress, ChannelPromise)</td>
+<td>发起连接</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#write(Object, ChannelPromise)</td>
+<td>写数据</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#flush()</td>
+<td>将写的数据发送</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#read()</td>
+<td>触发读操作</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#disconnect(ChannelPromise)</td>
+<td>与对方的连接断开</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#close(ChannelPromise)</td>
+<td>关闭自己的连接</td>
+</tr>
+<tr>
+<td>ChannelHandlerContext#deregister()</td>
+<td>触发取消注册</td>
+</tr>
+</tbody>
+</table>
+<h6 id="ChannelEvent">ChannelEvent</h6><p>通讯事件，是数据或者状态的载体，对Channel进行操作时会产生一个event，并发送到pipleline。piple会选择一个handler进行处理，处理之后可能会产生新的event,并流转到下个handler。</p>
+<h6 id="Future">Future</h6><p>在Netty中所有的IO操作都是异步的，因此无法立刻得知消息是否被正确处理，但是我们可以过一会等它执行完成或者直接注册一个监听，具体的实现就是通过Future和ChannelFutures,他们可以注册一个监听，当操作执行成功或失败时监听会自动触发。总之，所有的操作都会返回一个ChannelFuture。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Netty/">Netty</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Java服务器架构" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/20016/10/25/Java服务器架构/" class="article-date">
+      <time datetime="+020016-10-25T09:30:00.000Z" itemprop="datePublished">20016-10-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/20016/10/25/Java服务器架构/">Java手游服务器架构</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Java手游服务器架构">Java手游服务器架构</h1><p>下个项目时间比较紧，暂时搁置<em>Go语言</em>重构服务器的想法。转而使用熟悉的java来重构服务器。<br>之前猛犸的服务器架构和技术都是比较低效的，我看只是能够实现服务器功能而已。但作为手游服务器要做到的长短连接，高并发，安全性，可扩展等等。<br>那借着这个新项目筹备期的机会，重构一套服务器架构以备以后工作使用。  </p>
+<p>先列一下技术列表。</p>
+<table>
+<thead>
+<tr>
+<th>技术名称</th>
+<th>作用</th>
+<th>我的需求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maven 3.3.9</td>
+<td>项目管理</td>
+<td>方便打包发布</td>
+</tr>
+<tr>
+<td>Netty 4.1.6</td>
+<td>网络传输底层</td>
+<td>高并发，长短连接</td>
+</tr>
+<tr>
+<td>Protocol buffer</td>
+<td>数据交换的格式</td>
+<td>二进制，流量小</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>数据交换的格式</td>
+<td>方便使用，视情况而定</td>
+</tr>
+<tr>
+<td>MemCache</td>
+<td>分布式的高速缓存系统</td>
+<td>增加数据库读性能，==缓存数据==</td>
+</tr>
+<tr>
+<td>Hibernate</td>
+<td>对象关系映射框架</td>
+<td>方便操作数据库</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td>关系型数据库管理系统</td>
+<td>存储服务器==冷数据==</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Key-Value数据库</td>
+<td>存储服务器==热数据==</td>
+</tr>
+<tr>
+<td>Jedis</td>
+<td>Java操作Redis库</td>
+<td>方便Redis的使用</td>
+</tr>
+<tr>
+<td>Excel</td>
+<td>微软数据文档</td>
+<td>存储服务器==静态数据==</td>
+</tr>
+<tr>
+<td>XXTEA</td>
+<td>加密算法</td>
+<td>保证传输消息的安全性</td>
+</tr>
+<tr>
+<td>Druid</td>
+<td>数据库连接池</td>
+<td>并发请求数据库</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>【注】<br><a href="http://gad.qq.com/article/detail/7172544" target="_blank" rel="external">参考文章</a>    后续逐步应用到项目中<br><em>==静态数据==：就是策划、运营提的数据。类似策划的数据表。</em><br><em>==冷数据==：需要更新但不频繁且数据结构比价稳定，类似一些玩家登录需要的玩家数据。</em><br><em>==热数据==：有频繁操作的数据，类似内存中的数据，但还需要进行存储，也就是内存数据库的概念。类似全服的PlayerInfo</em>  </p>
+<h2 id="==缓存数据==：临时的数据，只是用来提高数据库读写效率与高并发的。"><em>==缓存数据==：临时的数据，只是用来提高数据库读写效率与高并发的。</em>  </h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spring-applicationcontext-xml-模版" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/08/Spring-applicationcontext-xml-模版/" class="article-date">
+      <time datetime="2016-11-08T02:00:24.000Z" itemprop="datePublished">2016-11-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/08/Spring-applicationcontext-xml-模版/">Tomcat诡异的自动关闭</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">beans</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">       <span class="attribute">xmlns:xsi</span>=<span class="value">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attribute">xmlns:util</span>=<span class="value">"http://www.springframework.org/schema/util"</span></span><br><span class="line">       <span class="attribute">xsi:schemaLocation</span>=<span class="value">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"propertyConfigurer"</span></span><br><span class="line">          <span class="attribute">class</span>=<span class="value">"com.yushang.config.serverPropertyPlaceholderConfigurer"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"locations"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--list读取一系列配置文件--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">value</span>&gt;</span></span><br><span class="line">                    deploy/res/properties/server.properties</span><br><span class="line">                <span class="tag">&lt;/<span class="title">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"fileEncoding"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="title">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&amp;lt;!&amp;ndash;服务器信息&amp;ndash;&amp;gt;--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;bean id="serverInfo" class="com.yushang.server.ServerInfo"&gt;--&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&lt;property name="port" value="$&#123;server.port&#125;" /&gt;--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;/bean&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--服务器初始化器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"serverInit"</span> <span class="attribute">class</span>=<span class="value">"com.yushang.server.ServerInit"</span></span><br><span class="line">            <span class="attribute">init-method</span>=<span class="value">"init"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-暗淡" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -278,488 +951,9 @@
 
 
   
-    <article id="post-凯旋之门" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/20/凯旋之门/" class="article-date">
-      <time datetime="2016-06-20T05:54:23.000Z" itemprop="datePublished">2016-06-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/20/凯旋之门/">凯旋之门</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>《凯旋之门》采用U3D引擎制作，呈现高品质画面与精致建模，美术风格细腻，为玩家带来优质的游戏体验。作为策略养成型游戏，本作用于大量兵种、英雄、建筑物，可以随时随地的组建属于自己的军团，35种士兵带来近百种的搭配。游戏拥有独特的世界掠夺，魔石祭坛、竞技场等玩法，使玩家在收集中同时享受pvp与pve玩法带来的更多乐趣。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/手游/">手游</a>
-    </div>
-
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-关于Update和FixedUpdate的理解" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/08/关于Update和FixedUpdate的理解/" class="article-date">
-      <time datetime="2016-01-08T02:33:26.000Z" itemprop="datePublished">2016-01-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/08/关于Update和FixedUpdate的理解/">关于Update和FixedUpdate的理解</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>前些天充话费送了个手机，明知机器性能肯定很烂，但白得的永远是好的，心里还是高兴了一下。<br>正好最近的手游项目出来demo,公司的小米测试机跑的很是欢快。想着装我的”话费机”里试试。虽然有<br>一定的心里准备，但运行的速度还是让我出乎意料。战斗中人物的移动以及各种技能特效子弹飞行的速度<br>异常的缓慢。<br>虽说这不是我们的目标机型，但是为了让我这样用”话费机”的人也能玩上游戏，自然是想想优化方案了。</p>
-<h3 id="问题表现：低端机运行战斗表现缓慢，无法容忍！">问题表现：低端机运行战斗表现缓慢，无法容忍！</h3><p>战斗表现缓慢，人物子弹位移缓慢的原因自然是机器性能太差，导致FPS极低造成的。<br>同事查看战斗逻辑代码，发现战斗逻辑基本都写在Update()方法里，而这个方法是每帧渲染前调用。<br>也就是逻辑与渲染同步，因此机器性能变慢导致逻辑变慢，才有的之前的现象。<br><strong>Update() 每帧触发一次</strong></p>
-<h3 id="解决问题：将战斗相关代码都放在FixedUpdate()里，果然运行流畅了许多，可以接受了！">解决问题：将战斗相关代码都放在FixedUpdate()里，果然运行流畅了许多，可以接受了！</h3><p><strong>FixedUpdate() 固定间隔时间触发一次</strong><br>理论上忽略机器性能的问题 Update()与FixedUpdate()在同样时间间隔内触发次数应该相同。<br>然并卵！现实就是现实，你无法忽略手机设备的性能差异尤其是Android系手机。<br><em>那所有逻辑都写在 FixedUpdate()不就完了？</em><br>真实情况是：相同时间相同频率下 Update()执行次数一定小于 FixedUpdate()次数！<br><em>你还要为你的程序效率着想！</em></p>
-<h1 id="好钢用在刀刃上，可以将表现战斗的主要逻辑放在FixedUpdate()里，其他UI等的渲染逻辑放在_Update()里，具体问题具体分析！">好钢用在刀刃上，可以将表现战斗的主要逻辑放在FixedUpdate()里，其他UI等的渲染逻辑放在 Update()里，具体问题具体分析！</h1>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Unity/">Unity</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FixedUpdate/">FixedUpdate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Update/">Update</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Tomcat诡异的自动关闭" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/07/Tomcat诡异的自动关闭/" class="article-date">
-      <time datetime="2016-01-07T02:20:24.000Z" itemprop="datePublished">2016-01-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/07/Tomcat诡异的自动关闭/">Tomcat诡异的自动关闭</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><em>“我擦！ 服务器又关了~~~”</em><br><em>“服务器又关了~~~”</em><br><em>“又关了~~~”</em><br><em>咋回事？我没关服啊！</em></p>
-<p>开发中总是能遇到种种稀奇古怪的问题，这次服务器Tomcat莫名其妙的自己关闭了！<br>BUT! 没人关服啊！</p>
-<h3 id="问题表现：内网服务器自动关闭！">问题表现：内网服务器自动关闭！</h3><p>一开始怀疑服务器的报错导致Tomcat关闭，查了好久发现没有报错！<br>…<br>排查了代码的问题，没有发现异常情况！<br>此时又出了个状况！我启动服务器没有问题，同事启动服务器就会自动关闭！<br>这里排除了人品问题之后开始找不同！</p>
-<p>唯一的不同是，我用shell命令启动服务器，同事写了个脚本启动服务器。<br>脚本如下<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/admin/server/serverTomcat/bin&#10;sh shutdown.sh&#10;cd /home/admin/server/gameServer&#10;svn up&#10;cd /home/admin/server/serverTomcat/bin&#10;sh startup.sh&#10;tail -f ../logs/catalina.out</span><br></pre></td></tr></table></figure></p>
-<p>我的命令也是这样打的啊，怎么会有问题?<br>先把最后一句控制台去掉试试。。。<br>居然成了！<br>查了下，因为脚本启动运行Tomcat 和 tail，而Tomcat挂在了shell上，<br><strong>所以在关闭Shell的时候也就关闭了Tomcat</strong></p>
-<h3 id="解决问题：开启监视器模式，在脚本中加入_set_-m即可">解决问题：开启监视器模式，在脚本中加入 set -m即可</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set -m&#10;cd /home/admin/server/serverTomcat/bin&#10;sh shutdown.sh&#10;cd /home/admin/server/gameServer&#10;svn up&#10;cd /home/admin/server/serverTomcat/bin&#10;sh startup.sh&#10;tail -f ../logs/catalina.out</span><br></pre></td></tr></table></figure>
-<h1 id="诡异的问题通常是知识的盲区！">诡异的问题通常是知识的盲区！</h1>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20151125-HexoConfig" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/01/20151125-HexoConfig/" class="article-date">
-      <time datetime="2015-12-31T16:00:00.000Z" itemprop="datePublished">2016-01-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/01/20151125-HexoConfig/">GitHub Blog 配置流程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>最近有些时间，弄了个自己的博客。过程比较麻烦，正好这第一篇先记录构建流程吧。</p>
-<h2 id="准备工具">准备工具</h2><ul>
-<li>空间：<a href="https://github.com/" target="_blank" rel="external">Github</a>，免费300M。</li>
-<li>环境：<a href="https://nodejs.org" target="_blank" rel="external">Node.js</a></li>
-<li>Blog架构：<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a></li>
-<li>Blog主题：<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a></li>
-<li>Git工具：版本1.9.5</li>
-<li>域名：<a href="http://wanwang.aliyun.com/" target="_blank" rel="external">万网</a></li>
-</ul>
-<h2 id="操作步骤">操作步骤</h2><h3 id="创建本地工程">创建本地工程</h3><ul>
-<li>1 安装 <strong>Git 1.9.5</strong></li>
-<li>2 安装 <strong>node-v4.2.1-64x</strong></li>
-<li>3    建立本地工程目录。<em>eg:F:\blog\may</em></li>
-<li>4 在此目录中点击右键 选择 <strong>Git Bash</strong> 打开控制台程序。<ul>
-<li>4.1 控制台中输入    <code>npm install -g hexo</code><br><em>[注：由于国外npm源经常被墙，直接配置国内淘宝的npm源（每10分钟与国外源同步一次）。<br>系统盘里找到 .npmrc 文件，改成： <code>registry=http://registry.npm.taobao.org</code>。<br>]</em>  </li>
-</ul>
-</li>
-<li>5 初始化 hexo<br>  <code>hexo init</code><br>  此时你的文件夹里应该已经有了hexo的工程。</li>
-<li>6 安装npm<br>  <code>npm install</code></li>
-<li>7 生成工程<br>  <code>hexo g</code></li>
-<li>8 运行工程<br>  <code>hexo s</code> <em>[注：浏览器打开，本地运行成功！]</em>  <h3 id="同步到GitHub">同步到GitHub</h3></li>
-<li>1 注册Git账号。</li>
-<li>2 创建 <strong>Repository</strong>。<em>eg:XXX/XXX.github.io</em></li>
-<li>3 修改站点配置文件 <strong>_config.yml</strong>  <pre><code><span class="string">deploy:</span>
-<span class="string">type:</span> git  
-<span class="string">repository:</span><span class="string">https:</span><span class="comment">//github.com/<span class="label">XXX/XXX.github.io.git  </span></span>
-<span class="string">branch:</span> master
-</code></pre></li>
-<li>4 设置 <strong>ssh key</strong><ul>
-<li>4.1 查看是否已经存在 sshkey。<br>  <code>ls -al ~/.ssh</code><br>  若存在则删除。</li>
-<li>4.2 输入 <code>ssh-keygen -t rsa -C&quot;你的git账号&quot;</code></li>
-<li>4.3 输入<br>  <code>eval &#39;ssh-agent -s&#39;</code><br>  <code>ssh-add</code></li>
-<li>4.4 在github里添加这个key 随便起个名字</li>
-<li>4.5 输入 <code>ssh -T git@github.com</code></li>
-<li>4.6 生成工程，并上传。<br>  <code>Hexo g</code><br>  <code>Hexo d</code></li>
-</ul>
-</li>
-<li>5 如果报错 <em>ERROR Deployer not found:git</em><br>  输入 <code>npm install hexo-deployer-git -save</code>，再重新生成上传工程即可！</li>
-</ul>
-<h3 id="外网域名映射">外网域名映射</h3><pre><code>在<span class="tag">source</span>文件夹里添加 <span class="tag">CNAME</span> 文件 <span class="attr_selector">[注：没有扩展名]</span> ，设置域名映射。  
-内容为 <span class="tag">www</span><span class="class">.xxx</span><span class="class">.com</span>   
-</code></pre><h1 id="运行浏览器看看效果吧，应该大功告成了!">运行浏览器看看效果吧，应该大功告成了!</h1>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NexT/">NexT</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-年长" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/03/11/年长/" class="article-date">
-      <time datetime="2014-03-11T01:02:00.000Z" itemprop="datePublished">2014-03-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/11/年长/">年长</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="年长">年长</h1><p>时间流逝，生活的打磨，我已变成当年害怕变成的状态。<br>雄心壮志已平静，希望还在前方。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-平常日子" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/07/18/平常日子/" class="article-date">
-      <time datetime="2013-07-18T03:59:00.000Z" itemprop="datePublished">2013-07-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/07/18/平常日子/">平常日子</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="平常日子">平常日子</h1><p><em>家庭有个真佛，日用有种真道。人能诚心和气、愉色婉言，使父母兄弟间形骸两释、意气交流，胜过调息观心万倍矣。—— 《菜根谭》</em></p>
-<p>不经过琐碎的家务、人事纠葛的考验，如何进而营造并享受家庭的温馨、浪漫？</p>
-<p><em>“君子务本，本立而道生。” —— 《论语》</em></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-童趣" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/07/18/童趣/" class="article-date">
-      <time datetime="2013-07-18T03:59:00.000Z" itemprop="datePublished">2013-07-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/07/18/童趣/">童趣</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="童趣">童趣</h1><p>大萱和她妈妈唱歌，唱到一闪一闪亮晶晶，漫天都是小星星的时候，大萱突然问妈妈，“<em>妈妈，你说漫天都是小星星了，那月亮放哪啊？</em>”<br>:D:D:D:D</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>

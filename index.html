@@ -136,7 +136,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a> <a href="/tags/����/" style="font-size: 10px;">����</a>
+                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a>
                     </div>
                 </section>
                 
@@ -231,7 +231,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Junit">Junit</h1><p>żȻʹ���� junit ���ȽϷ��㣬��Ҫ���Կ������в��Է�����<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">0x10000001</span>;</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; b = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        b.put(a,<span class="number">999</span>);</span><br><span class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer,Integer&gt; entry : b.entrySet())&#123;</span><br><span class="line">            <span class="keyword">int</span> k = entry.getKey();</span><br><span class="line">            <span class="keyword">int</span> v = entry.getValue();</span><br><span class="line">            System.out.println(k+<span class="string">","</span>+v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@org</span>.junit.Test <span class="comment">//��idea�༭�������߻��и���ɫС��ͷ�����¾Ϳ��������ˣ�����main��</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"test111111"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="Junit">Junit</h1><p>偶然使用下 junit 还比较方便，主要可以快速运行测试方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">0x10000001</span>;</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; b = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        b.put(a,<span class="number">999</span>);</span><br><span class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer,Integer&gt; entry : b.entrySet())&#123;</span><br><span class="line">            <span class="keyword">int</span> k = entry.getKey();</span><br><span class="line">            <span class="keyword">int</span> v = entry.getValue();</span><br><span class="line">            System.out.println(k+<span class="string">","</span>+v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@org</span>.junit.Test <span class="comment">//在idea编辑器上左边会有个绿色小箭头，按下就可以运行了！不用main了</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"test111111"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -240,7 +240,7 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Java������/">Java������</a>
+    <a class="article-category-link" href="/categories/Java服务器/">Java服务器</a>
     </div>
 
 
@@ -283,7 +283,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/10/刀/">��</a>
+      <a class="article-title" href="/2016/12/10/刀/">刀</a>
     </h1>
   
 
@@ -293,9 +293,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="��">��</h1><p>������Ҳ��-��˵�Ľ��֡�<br>�������̻�Ҳ��-����ת��</p>
-<p>���޼䶯�����ǲŽ������Է٣�������ȡ��</p>
-<p>����֮��</p>
+        <h1 id="刀">刀</h1><p>刀，兵也。-《说文解字》<br>夫兵，犹火也。-《左转》</p>
+<p>夫妻间动刀，那才叫玩火自焚，咎由自取！</p>
+<p>共勉之！</p>
 
       
     </div>
@@ -304,13 +304,13 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/����/">����</a>
+    <a class="article-category-link" href="/categories/生活/">生活</a>
     </div>
 
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/����/">����</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
     </div>
 
       

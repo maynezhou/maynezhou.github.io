@@ -136,7 +136,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a>
+                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a> <a href="/tags/����/" style="font-size: 10px;">����</a>
                     </div>
                 </section>
                 
@@ -203,6 +203,132 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-junit" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/15/junit/" class="article-date">
+      <time datetime="2016-12-15T08:06:00.000Z" itemprop="datePublished">2016-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/15/junit/">Junit</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Junit">Junit</h1><p>żȻʹ���� junit ���ȽϷ��㣬��Ҫ���Կ������в��Է�����<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">0x10000001</span>;</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; b = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        b.put(a,<span class="number">999</span>);</span><br><span class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer,Integer&gt; entry : b.entrySet())&#123;</span><br><span class="line">            <span class="keyword">int</span> k = entry.getKey();</span><br><span class="line">            <span class="keyword">int</span> v = entry.getValue();</span><br><span class="line">            System.out.println(k+<span class="string">","</span>+v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@org</span>.junit.Test <span class="comment">//��idea�༭�������߻��и���ɫС��ͷ�����¾Ϳ��������ˣ�����main��</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"test111111"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java������/">Java������</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/junit/">junit</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-刀" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/10/刀/" class="article-date">
+      <time datetime="2016-12-10T01:30:00.000Z" itemprop="datePublished">2016-12-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/10/刀/">��</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="��">��</h1><p>������Ҳ��-��˵�Ľ��֡�<br>�������̻�Ҳ��-����ת��</p>
+<p>���޼䶯�����ǲŽ������Է٣�������ȡ��</p>
+<p>����֮��</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/����/">����</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/����/">����</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-log4j" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -722,204 +848,6 @@ Name | Expression<br>—|—<br>class | className()</li>
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Netty/">Netty</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java服务器架构" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/25/Java服务器架构/" class="article-date">
-      <time datetime="2016-10-25T09:30:00.000Z" itemprop="datePublished">2016-10-25</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/25/Java服务器架构/">Java手游服务器架构</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="Java手游服务器架构">Java手游服务器架构</h1><p>下个项目时间比较紧，暂时搁置<em>Go语言</em>重构服务器的想法。转而使用熟悉的java来重构服务器。<br>之前猛犸的服务器架构和技术都是比较低效的，我看只是能够实现服务器功能而已。但作为手游服务器要做到的长短连接，高并发，安全性，可扩展等等。<br>那借着这个新项目筹备期的机会，重构一套服务器架构以备以后工作使用。  </p>
-<p>先列一下技术列表。</p>
-<table>
-<thead>
-<tr>
-<th>技术名称</th>
-<th>作用</th>
-<th>我的需求</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Maven 3.3.9</td>
-<td>项目管理</td>
-<td>方便打包发布</td>
-</tr>
-<tr>
-<td>Netty 4.1.6</td>
-<td>网络传输底层</td>
-<td>高并发，长短连接</td>
-</tr>
-<tr>
-<td>Protocol buffer</td>
-<td>数据交换的格式</td>
-<td>二进制，流量小</td>
-</tr>
-<tr>
-<td>JSON</td>
-<td>数据交换的格式</td>
-<td>方便使用，视情况而定</td>
-</tr>
-<tr>
-<td>MemCache</td>
-<td>分布式的高速缓存系统</td>
-<td>增加数据库读性能，==缓存数据==</td>
-</tr>
-<tr>
-<td>Hibernate</td>
-<td>对象关系映射框架</td>
-<td>方便操作数据库</td>
-</tr>
-<tr>
-<td>MySql</td>
-<td>关系型数据库管理系统</td>
-<td>存储服务器==冷数据==</td>
-</tr>
-<tr>
-<td>Redis</td>
-<td>Key-Value数据库</td>
-<td>存储服务器==热数据==</td>
-</tr>
-<tr>
-<td>Jedis</td>
-<td>Java操作Redis库</td>
-<td>方便Redis的使用</td>
-</tr>
-<tr>
-<td>Excel</td>
-<td>微软数据文档</td>
-<td>存储服务器==静态数据==</td>
-</tr>
-<tr>
-<td>XXTEA</td>
-<td>加密算法</td>
-<td>保证传输消息的安全性</td>
-</tr>
-<tr>
-<td>Druid</td>
-<td>数据库连接池</td>
-<td>并发请求数据库</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>【注】<br><a href="http://gad.qq.com/article/detail/7172544" target="_blank" rel="external">参考文章</a>    后续逐步应用到项目中<br><em>==静态数据==：就是策划、运营提的数据。类似策划的数据表。</em><br><em>==冷数据==：需要更新但不频繁且数据结构比价稳定，类似一些玩家登录需要的玩家数据。</em><br><em>==热数据==：有频繁操作的数据，类似内存中的数据，但还需要进行存储，也就是内存数据库的概念。类似全服的PlayerInfo</em>  </p>
-<h2 id="==缓存数据==：临时的数据，只是用来提高数据库读写效率与高并发的。"><em>==缓存数据==：临时的数据，只是用来提高数据库读写效率与高并发的。</em>  </h2>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-暗淡" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/25/暗淡/" class="article-date">
-      <time datetime="2016-10-25T09:00:00.000Z" itemprop="datePublished">2016-10-25</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/25/暗淡/">暗淡</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="暗淡">暗淡</h1><p>昨天在公司从13点到3点，会议室里老板和三个主管讨论公司后边的发展。<br>公司项目在投入了几百万之后无法产生收益，公司员工工作状态散漫，大家都在养老啊。<br>谁的锅，谁的责任，现在并不重要。老板的怨懑和不满，我能理解。<br>在这个腾讯360等手游巨鳄霸权的时代，我们还能做点什么？！<br>中国所有的行业都是一样，最终会被巨头强奸与统治。<br>一杯淡茶，一幕代码，心中的那一点希望。<br>多么的幼稚，多么的真实。  </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
     </div>
 
       

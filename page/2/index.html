@@ -136,7 +136,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a>
+                        <a href="/tags/FixedUpdate/" style="font-size: 10px;">FixedUpdate</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Idea/" style="font-size: 10px;">Idea</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/NexT/" style="font-size: 10px;">NexT</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Update/" style="font-size: 10px;">Update</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/诗/" style="font-size: 10px;">诗</a> <a href="/tags/����/" style="font-size: 10px;">����</a>
                     </div>
                 </section>
                 
@@ -203,6 +203,204 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Java服务器架构" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/25/Java服务器架构/" class="article-date">
+      <time datetime="2016-10-25T09:30:00.000Z" itemprop="datePublished">2016-10-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/25/Java服务器架构/">Java手游服务器架构</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Java手游服务器架构">Java手游服务器架构</h1><p>下个项目时间比较紧，暂时搁置<em>Go语言</em>重构服务器的想法。转而使用熟悉的java来重构服务器。<br>之前猛犸的服务器架构和技术都是比较低效的，我看只是能够实现服务器功能而已。但作为手游服务器要做到的长短连接，高并发，安全性，可扩展等等。<br>那借着这个新项目筹备期的机会，重构一套服务器架构以备以后工作使用。  </p>
+<p>先列一下技术列表。</p>
+<table>
+<thead>
+<tr>
+<th>技术名称</th>
+<th>作用</th>
+<th>我的需求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maven 3.3.9</td>
+<td>项目管理</td>
+<td>方便打包发布</td>
+</tr>
+<tr>
+<td>Netty 4.1.6</td>
+<td>网络传输底层</td>
+<td>高并发，长短连接</td>
+</tr>
+<tr>
+<td>Protocol buffer</td>
+<td>数据交换的格式</td>
+<td>二进制，流量小</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>数据交换的格式</td>
+<td>方便使用，视情况而定</td>
+</tr>
+<tr>
+<td>MemCache</td>
+<td>分布式的高速缓存系统</td>
+<td>增加数据库读性能，==缓存数据==</td>
+</tr>
+<tr>
+<td>Hibernate</td>
+<td>对象关系映射框架</td>
+<td>方便操作数据库</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td>关系型数据库管理系统</td>
+<td>存储服务器==冷数据==</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>Key-Value数据库</td>
+<td>存储服务器==热数据==</td>
+</tr>
+<tr>
+<td>Jedis</td>
+<td>Java操作Redis库</td>
+<td>方便Redis的使用</td>
+</tr>
+<tr>
+<td>Excel</td>
+<td>微软数据文档</td>
+<td>存储服务器==静态数据==</td>
+</tr>
+<tr>
+<td>XXTEA</td>
+<td>加密算法</td>
+<td>保证传输消息的安全性</td>
+</tr>
+<tr>
+<td>Druid</td>
+<td>数据库连接池</td>
+<td>并发请求数据库</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>【注】<br><a href="http://gad.qq.com/article/detail/7172544" target="_blank" rel="external">参考文章</a>    后续逐步应用到项目中<br><em>==静态数据==：就是策划、运营提的数据。类似策划的数据表。</em><br><em>==冷数据==：需要更新但不频繁且数据结构比价稳定，类似一些玩家登录需要的玩家数据。</em><br><em>==热数据==：有频繁操作的数据，类似内存中的数据，但还需要进行存储，也就是内存数据库的概念。类似全服的PlayerInfo</em>  </p>
+<h2 id="==缓存数据==：临时的数据，只是用来提高数据库读写效率与高并发的。"><em>==缓存数据==：临时的数据，只是用来提高数据库读写效率与高并发的。</em>  </h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-暗淡" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/25/暗淡/" class="article-date">
+      <time datetime="2016-10-25T09:00:00.000Z" itemprop="datePublished">2016-10-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/25/暗淡/">暗淡</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="暗淡">暗淡</h1><p>昨天在公司从13点到3点，会议室里老板和三个主管讨论公司后边的发展。<br>公司项目在投入了几百万之后无法产生收益，公司员工工作状态散漫，大家都在养老啊。<br>谁的锅，谁的责任，现在并不重要。老板的怨懑和不满，我能理解。<br>在这个腾讯360等手游巨鳄霸权的时代，我们还能做点什么？！<br>中国所有的行业都是一样，最终会被巨头强奸与统治。<br>一杯淡茶，一幕代码，心中的那一点希望。<br>多么的幼稚，多么的真实。  </p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/生活/">生活</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-凯旋之门" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -587,141 +785,6 @@
         <h1 id="平常日子">平常日子</h1><p><em>家庭有个真佛，日用有种真道。人能诚心和气、愉色婉言，使父母兄弟间形骸两释、意气交流，胜过调息观心万倍矣。—— 《菜根谭》</em></p>
 <p>不经过琐碎的家务、人事纠葛的考验，如何进而营造并享受家庭的温馨、浪漫？</p>
 <p><em>“君子务本，本立而道生。” —— 《论语》</em></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-童趣" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/07/18/童趣/" class="article-date">
-      <time datetime="2013-07-18T03:59:00.000Z" itemprop="datePublished">2013-07-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/07/18/童趣/">童趣</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="童趣">童趣</h1><p>大萱和她妈妈唱歌，唱到一闪一闪亮晶晶，漫天都是小星星的时候，大萱突然问妈妈，“<em>妈妈，你说漫天都是小星星了，那月亮放哪啊？</em>”<br>:D:D:D:D</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-我们能拥有孩子多少年？" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/05/14/我们能拥有孩子多少年？/" class="article-date">
-      <time datetime="2013-05-14T01:07:00.000Z" itemprop="datePublished">2013-05-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/05/14/我们能拥有孩子多少年？/">我们能拥有孩子多少年？</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="我们能拥有孩子多少年？">我们能拥有孩子多少年？</h1><p>当你想对孩子发脾气时，当你控制不住自己的情绪对孩子恨铁不成钢时，读读这篇文章吧。或许能缓解一下你紧张的神经。</p>
-<p>　　</p>
-<p>   3岁，他去上幼儿园了，看着他小小的坚强的背影，心中又喜悦又有点小小的心酸。离别了一整天，孩子看到你高兴得奔跑过来，扑在你的怀里。跟你说：妈妈，我想你了。那一刻，抱着孩子就像抱着了整个世界。</p>
-<p>　　6岁，他上小学了，孩子终于走进校门，这是多么值得纪念的事情，孩子的人生从此翻开了新的篇章，却没想到，这也是孩子离开我们的第一步。他已经对与你分开一天习以为常了，而且他喜欢每天去学校，这是他更喜欢的生活。甚至，他有时还会说：妈妈，在家好无聊，没有小朋友和我玩。</p>
-<p>　　12岁，他上初中了，甚至有的开始上寄宿学校，一个月或者几个月回一次家，见上一次面。他们开始不再依赖你，甚至，他们喜欢和你对着干。你想帮他们做点事情，他们说：妈妈，我自己来吧。突然觉得这句话让我们觉得好失落，孩子是不是不再需要我们了？</p>
-<p>　　18岁，他离开你去上大学，一年回来两次。回来的好几天前，家里的冰箱就装不下了，为他准备了各种各样他喜欢吃的东西。可是一回来打个照面，他就忙着和同学朋友聚会去了。从此，你最怕听到的一句话是：妈妈，我不回家吃饭了，你们自己吃吧。</p>
-<p>　　大学毕业后，孩子留在了远方工作，一年也难的回来一次了。好不容易回来一趟，几天就走了。你最盼望的就是孩子的电话，希望，孩子对你说一声：妈妈，我很好，你保重身体。这样就足够了。</p>
-<p>　　孩子结婚了，回家的时间有一半匀给了你的亲家，孩子回来的更少了。你已经习惯就老两口在家了，但是，你最希望听到孩子对你说：妈妈，今年过年我回家过啊！</p>
-<p>　　当孩子又有了他们自己的孩子，你已经不再是他们的家庭成员了，他们的一家三口（或一家n口）里，已经不包括你们了。而我们也慢慢的习惯了这样的日子。只是习惯在闲来无事的时候，经常翻翻相册，看看我们自己的一家三口，无论孩子身在何方，他却永远是我们家庭中无可取代的一员。</p>
-<p>　　是啊，其实当孩子在身边的日子，我们是多么幸福。可是有时我们却还会抱怨。抱怨因为他，你做了太多的牺牲。抱怨他晚上老醒来，让你睡不好，抱怨他无理取闹，抱怨他爱撒娇长不大，抱怨他生病，让你操碎了心，抱怨为了培养他，花费了太多的精力与金钱……可是，如果你想想，10多年后，就算你想要，也没有机会了。孩子会不停的长大，过了这个时期他就再没有这个时期的习性。你是不是常常在他断奶后怀念喂他吃奶的日子，可是那时你却觉得好累好辛苦好厌倦。是不是常常看他以前吃手的照片觉得好可爱，可是你曾经却为要不停的给他洗手而烦恼透了。是不是在他褪去童声后，特别想念他曾经奶声奶气的声音，可是他以前撒娇的时候你却很不受用。是不是当孩子去上学后你特别怀念他黏在你身边的日子，可是以前你却总在想他要什么时候才能去上学啊……</p>
-<p>　　时间无法倒流，过去了就只能永远过去了。孩子能呆在身边的日子是多么难得与宝贵。因为这一点，我更加的珍惜与孩子相处的每一刻，也让我无论遇到什么，都心存感恩。谢谢上天给我这么一个孩子，让我分享与见证他成长的每一刻。无论带给我多少困难，烦恼，甚至挫败，无论让我失去多少睡眠，时间，金钱，精力，我仍然豁达，因为，这都是上天的恩赐。</p>
-<p>　　当他在身边的每一天，我都会让他觉得幸福，也是让我们都有一个美好的回忆。我不会给他太多压力，束缚，更不会给他牵绊，阻扰，但是我会适时管教，也会做量力而行的投资，因为我有责任与义务教会他生活的本领，好让他来日自由快乐的飞翔。同时，我也会告诉他，就算所有的路都行不通时，还有一条路你可以畅行，那就是回家的路……</p>
 
       
     </div>
